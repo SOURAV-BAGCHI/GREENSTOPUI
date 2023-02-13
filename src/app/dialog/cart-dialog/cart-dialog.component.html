@@ -1,0 +1,291 @@
+<div style="height:100vh; margin-bottom: 20px;">
+   
+    <mat-card >
+      <div class="row">
+          <div class="col-10">
+              <span class="h6">Shopping cart</span>
+          </div>
+          <div class="col-2" class="text-center">
+            <span (click)="onNoClick()" style="font-size: 1.5rem;cursor: pointer;" >&#10005;</span>
+          </div>
+      </div>
+    </mat-card>
+    <div class="p-3">
+        <div *ngIf="itemCount==0">
+            <span class="h6">You don't have any item in your cart.</span>
+          </div>
+        <div *ngFor="let item of storageItemList;index as i" class="mb-2">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="mb-0" style="font-size: medium;">{{item.name}}</h5>
+                  <!-- <h6 class="card-title mb-2 text-muted">Catagory:Celebrations</h6> -->
+                  
+                  <h6 class="card-subtitle text-muted mb-0" *ngIf="item.note.length>0">Note for the cook:</h6>
+                  <p class="card-text">{{item.note}}</p>
+                  <a class="mb-3"><span style="font-size: medium;color:green;">&#8377;{{item.price*item.quantity}}</span> </a>
+                  <div class="row mt-2">
+                      <div class="col-8">
+                        <!-- <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Quantity</mat-label>
+                            <input matInput placeholder="Quantity" value="{{item.quantity}}" [disabled]="true">
+                          </mat-form-field> -->
+                          <div class="input-group">
+                            <input type="button" value="-" class="button-minus border-right-0 border-light" data-field="quantity" [disabled]="item.quantity==1" (click)="changeOrderQuantity(item.id,item.timestamp,-1,i)">
+                            <!-- <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field"> -->
+                            <label for="" class="quantity-field pt-2 border-top border-bottom border-light">{{item.quantity}}</label>
+                            <input type="button" value="+" class="button-plus border-left-0 border-light" data-field="quantity" [disabled]="item.quantity==15" (click)="changeOrderQuantity(item.id,item.timestamp,1,i)">
+                            <!-- <span class="btn" style="cursor:pointer;font-size: inherit;color:gray;" (click)="removeItem(item.timestamp)"><i class="far fa-2x fa-trash-alt"></i></span> -->
+                          </div>
+                          
+                        </div>
+                      <div class="col-4">
+                        <span class="btn" style="cursor:pointer;font-size: inherit;color:gray;" (click)="removeItem(item.timestamp)">Remove</span>
+                      </div>
+                  </div>
+                  
+                </div>
+              </div>
+        </div>
+
+        <div *ngIf="itemCount>0">
+          <div class="row p-3">
+            <div class="col-6">
+              <p class="h6">Item Total:</p>
+            </div>
+            <div class="col-6 text-right">
+              &#8377; {{subTotal}}
+            </div>
+            <div class="col-6">
+              <p class="h6">CGST</p>
+            </div>
+            <div class="col-6 text-right">
+              &#8377; {{tax}}
+            </div>
+            <div class="col-6">
+              <p class="h6">SGST</p>
+            </div>
+            <div class="col-6 text-right">
+              &#8377; {{tax}}
+            </div>
+            <div class="col-6">
+              <p class="h6">Packaging Charges</p>
+            </div>
+            <div class="col-6 text-right">
+              &#8377; 0
+            </div>
+            <div class="col-6">
+              <p class="h6">Delivery Charges</p>
+            </div>
+            <div class="col-6 text-right">
+              <span [hidden]="!pincodeAvailable">&#8377; </span> {{(pincodeAvailable? userPincodeDetails.deliveryCharge:'According to your pincode')}}
+            </div>
+            <div class="col-6 border-top" *ngIf="pincodeAvailable">
+              <p class="text-success">Total Bill Value: (Payable by you)</p>
+            </div>
+            <div class="col-6 text-right border-top" *ngIf="pincodeAvailable">
+              <span>&#8377;</span><span>{{userPincodeDetails.deliveryCharge+subTotal}}</span>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <div *ngIf="itemCount>0">
+        <div *ngIf="!doCheckout">
+          <div class="col-12">
+            <div class="row mb-3">
+                <div class="col-2"></div>
+                <div class="col-8">
+                    <button class="w-100" mat-raised-button (click)="doCheckoutUser()">Proceed</button>
+                </div>
+                <div class="col-2"></div>
+            </div>
+            
+            
+        </div>
+        <div class="col-12 my-3" class="text-center">
+          <span (click)="onNoClick()" style="cursor: pointer;color: darkgreen;
+          font-weight: bold;display: block;"  cdkFocusInitial>Continue shopping</span>
+          <div class="primary-ending mt-4" style="height:30px;"></div>
+        </div>
+        </div>
+            
+    </div>
+      <div *ngIf="doCheckout && itemCount>0">
+        <div class="userDetailsCls">
+
+        </div>
+        <mat-vertical-stepper [linear]="true" #stepper>
+          <mat-step [stepControl]="firstFormGroup" errorMessage="Pincode is required." [optional]="false" [editable]="true">
+            <div class="row">
+              <div class="col-8">
+                <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>Check service availability</ng-template>
+                  <mat-form-field class="w-100">
+                    <mat-label>Pincode</mat-label>
+                    <input matInput placeholder="Enter pincode" formControlName="firstCtrl" required>
+                  </mat-form-field>
+                  <div *ngIf="pincodeChecked">
+                    <div *ngIf="pincodeAvailable">
+                      <p class="h6 text-success mb-0">Service available</p>
+                      <p style="font-size: small;">Delivery charges: &#8377;{{userPincodeDetails.deliveryCharge}}</p>
+                      <p *ngIf="orderamtleftforthreshold>0">Add items worth <span style="color:green;"> Rs.{{orderamtleftforthreshold}}</span> or more for free delivery</p>
+                      <button mat-button matStepperNext (click)="loadCaptche()"><span class="font-weight-bold" style="font-size:1.3rem;color:#d73609;">Next</span></button>
+                    </div>
+                    <div *ngIf="!pincodeAvailable">
+                      <p class="text-secondary mb-0" style="font-size: small;">Service unavailable</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="col-4">
+                <button  mat-raised-button [disabled]="this.firstFormGroup.invalid" class="w-100" *ngIf="!isloadingData" (click)="checkPincodeAvailability()">
+                  Check
+                </button>
+                <span class="spinner-border text-primary" *ngIf="isloadingData"></span>
+              </div>
+            </div>
+            
+          </mat-step>
+          <mat-step [editable]="false" [stepControl]="thirdFormGroup">
+                <div *ngIf="showNextSection">
+                  <form [formGroup]="thirdFormGroup">
+                    <ng-template matStepLabel> Delivery Address, Date and Time</ng-template>
+                    <mat-form-field class="w-100">
+                      <mat-label>Address Line 1</mat-label>
+                      <input matInput placeholder="Address Line 1" formControlName="addressLine1Ctrl" required>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                      <mat-label>Address Line 2</mat-label>
+                      <input matInput placeholder="Address Line 2" formControlName="addressLine2Ctrl">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                      <mat-label>Landmark</mat-label>
+                      <input matInput placeholder="Landmark" formControlName="landmarkCtrl" required>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                      <mat-label>Pincode</mat-label>
+                      <input matInput placeholder="Pincode" formControlName="pinCtrl" required>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                      <mat-label>Whatsapp Number</mat-label>
+                      <input matInput placeholder="Phone" formControlName="phoneCtrl" required>
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                      <mat-label>Alternate Phone</mat-label>
+                      <input matInput placeholder="Alternate Phone" formControlName="altphoneCtrl">
+                    </mat-form-field>
+                    <mat-form-field class="w-100">
+                      <mat-label>Note for delivery</mat-label>
+                      <input matInput placeholder="Note for delivery" formControlName="DeliveryInstructionCtrl">
+                    </mat-form-field>
+                    <div class="row">
+                      <div class="col-7">
+                        <mat-form-field class="w-100">
+                          <mat-label>Delivery date</mat-label>
+                          <input matInput [matDatepicker]="picker1" formControlName="deliveryDtTime" [min]="minOrderDate" required disabled>
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-5">
+                        <mat-form-field class="w-100">
+                          <mat-label>Time</mat-label>
+                          <mat-select formControlName="timeslotCtrl" name="timeslot" required>
+                            <mat-option *ngFor="let timeslot of timeslots" [value]="timeslot.value">
+                              {{timeslot.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-12">
+                        <div class="w-100"> 
+                          <mat-lable> Select the payment option</mat-lable>
+                          <mat-radio-group formControlName="PaymentModeCtrl" 
+                          aria-label="Select payment option"
+                          class="example-radio-group" required>
+                            <mat-radio-button value="1" class="example-radio-button">Cash on delivery</mat-radio-button>
+                            <mat-radio-button value="2" class="example-radio-button">UPI on delivery</mat-radio-button>
+                          </mat-radio-group>
+                        </div>
+                      </div>
+                      <div class="col-2 pt-2" style="background-color: aliceblue; padding:10px;">
+                        <i class="far fa-list-alt"></i>
+                      </div>
+                      <div class="col-10 pl-0 pt-2" style="background-color: aliceblue;">
+                        <!-- <p class="text-secondary">Review your Order, Delivery details and our <span style="color: coral;cursor: pointer;" (click)="togglecancellationsection()">Cancellation Policy</span> to avoid cancellation.</p> -->
+                        <p class="text-secondary">Review your Order, Delivery details and our <a style="color: coral;" href="/cancellationpolicy" target="_blank">Cancellation Policy</a> to avoid cancellation.</p>
+                        <p class="text-secondary">Please read & accept our <a [routerLink]='["/termsandconditions"]' target="_blank">Terms and Conditions</a> before placing your order with us.</p>
+                      </div>
+                      <div class="col-2 mt-2" style="background-color: aliceblue; padding:10px;"  *ngIf="showcancellationPolicy"></div>
+                      <div class="col-10 mt-2 pl-0 text-secondary" style="background-color: aliceblue; padding:10px;" *ngIf="showcancellationPolicy">
+                        <div class="row">
+                          <div class="col-12 mb-2">
+                            <span><strong> Cancellation Policy</strong></span>
+                          </div>
+                          <div class="col-12 mb-2">
+                            <span>Orders can be cancelled without any charges, if</span>
+                          </div>
+                          <div class="col-4 cancel_days" >
+                            Order scheduled to be delivered
+                          </div>
+                          <div class="col-8 cancel_days">
+                            if cancelled
+                          </div>
+                          <div class="col-4 cancel_days" >
+                            Tomorrow
+                          </div>
+                          <div class="col-8 cancel_condition">
+                            within 1 hours from time of placing the order
+                          </div>
+                          <div class="col-4 cancel_days">
+                            Day after tomorrow
+                          </div>
+                          <div class="col-8 cancel_condition">
+                            by 4 p.m. tomorrow
+                          </div>
+                          <div class="col-4 cancel_days">
+                            On any future date (excluding tomorrow or day after tomorrow)
+                          </div>
+                          <div class="col-8 cancel_condition">
+                            by 4 p.m. of the day previous to the day of requested delivery
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </form>
+                </div>
+                <div *ngIf="showNextSection==false">
+                  <p>Check your pincode for service availability and then fillup order delivery details</p>
+                </div>
+                
+              <div *ngIf="showNextSection" class="mb-3">
+              <section class="example-section">
+                <mat-checkbox
+                    class="example-margin"
+                    [(ngModel)]="acceptTermsAndConditions"
+                    (click)="scrolltobottom()"
+                    [disabled]="thirdFormGroup.invalid">
+                    <span class="checkbox-label">
+                      I accept the terms and conditions 
+                    </span>
+                     of Greenstop.
+                </mat-checkbox>
+              </section>
+              <!-- <button mat-button matStepperPrevious>Back</button> -->
+              <!-- <button  mat-button (click)="stepper.reset()">Reset</button> -->
+              <button class="placeOdrCls" mat-raised-button [disabled]="thirdFormGroup.invalid || !acceptTermsAndConditions" (click)="placeOrder()" >
+                
+                {{isloadingData?'Placing Order': 'Place Order'}}
+                                  <span *ngIf="isloadingData" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              
+              </button>
+              </div>
+              <div class="mb-3 mt-3 primary-ending2" style="height:40px;">
+
+              </div>
+          </mat-step>
+        </mat-vertical-stepper>
+        <div #last class="lastElement" style="height:30px;"></div>
+      </div>
+</div>

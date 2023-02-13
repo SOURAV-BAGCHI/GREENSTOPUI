@@ -1,0 +1,80 @@
+<div class="body-background">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 col-lg-3"></div>
+            <div class="col-sm-6 col-md-8 col-lg-6">
+                <mat-card class="example-card  my-4">
+
+                    <mat-card-content class="text-center">
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                
+                                <div *ngIf='isCodeValid!=null'>
+                                    <h1 [ngClass]="{'text-success':isCodeValid,'text-danger':!isCodeValid}">
+                                        {{isCodeValid?'Feedback registered successfully':'Error registering feedback'}}
+                                    </h1>
+                                    <p>{{message}}</p>
+                                </div>
+                                <div *ngIf="isCodeValid==null">
+                                    <h1>Review about your order</h1>
+                                <p>Sharing your first-hand experiences with Greenstop will  really help other users. Thanks!</p>
+                                <div>
+                                    <mat-star-rating [rating]="rating"  [starCount]="starCount" (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+                                </div>
+                                <form class="example-form">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                      <mat-label>Title of your review</mat-label>
+                                      <input type="text" maxlength="50" matInput [formControl]="reviewTitleFormControl" 
+                                             placeholder="Keep the title short and relevent">
+                                      <!-- <mat-hint>Please enter a title</mat-hint> -->
+                                      <mat-hint align="end">{{reviewTitleFormControl.value.length}} / 50</mat-hint>
+                                      <!-- <mat-error *ngIf="emailFormControl.hasError('maxLength') && !emailFormControl.hasError('required')">
+                                        Please enter a valid email address
+                                      </mat-error> -->
+                                      <mat-error *ngIf="reviewTitleFormControl.hasError('required')">
+                                        Review title is <strong>required</strong>
+                                      </mat-error>
+                                    </mat-form-field>
+                                  </form>
+                                <form class="example-form">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                      <mat-label>Your review</mat-label>
+                                      <input type="text" maxlength="500" matInput [formControl]="reviewFormControl" 
+                                      
+                                             placeholder="Your experiece with Janani Greens">
+                                      <!-- <mat-hint>Please state a reason!</mat-hint> -->
+                                      <mat-hint align="end">{{reviewFormControl.value.length}} / 500</mat-hint>
+                                      <!-- <mat-error *ngIf="emailFormControl.hasError('maxLength') && !emailFormControl.hasError('required')">
+                                        Please enter a valid email address
+                                      </mat-error> -->
+                                      <mat-error *ngIf="reviewFormControl.hasError('required')">
+                                        Review is <strong>required</strong>
+                                      </mat-error>
+                                    </mat-form-field>
+                                  </form>
+                                  
+                            
+                                </div>
+                                
+
+                                <button mat-raised-button *ngIf="isCodeValid==null" type="button" [disabled]="this.reviewFormControl.invalid || this.reviewTitleFormControl.invalid" class="my-4" (click)="onSubmit()">
+                                    {{isRequestInProcess?'Posting ...': 'Post Your Reviwe'}}
+                                    <span *ngIf="isRequestInProcess" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                </button>
+                                
+                                <button *ngIf="isCodeValid!=null" class="btn my-4" [ngClass]="{'btn-outline-success':isCodeValid,'btn-outline-danger':!isCodeValid}" (click)="gotohome()">Go back to home page</button>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                        
+                        
+
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col-sm-3 col-md-2 col-lg-3"></div>
+        </div>
+    </div>
+</div>
+

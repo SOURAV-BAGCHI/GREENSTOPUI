@@ -1,0 +1,15 @@
+@media (min-width: 700px)
+{
+    .responsive_ul{
+        padding-left: 28px !important;
+    }
+   .responsive_ul li{
+        margin-top: 10px;
+    }
+}
+
+.h4
+{
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
+}

@@ -1,0 +1,32 @@
+<div class="text-center ">
+    <div class="example-button-container">
+        <button mat-mini-fab aria-label="Example icon button with a home icon" (click)="onNoClick()" style="background: azure;">
+           <span style="color:indianred;">&#10060;</span>
+        </button>
+    </div>
+    <div>
+        <h2 mat-dialog-title class="mb-0" style="font-family: monospace;">Welcome to Greenstop!</h2>
+        <!-- <h2 mat-dialog-title style="font-family: cursive;">Suvo Nabobarsho!</h2> -->
+        <mat-dialog-content class="mat-typography mt-2">
+            <!-- <img src="assets/img/greenstop_subhonabobarsho.svg" alt="" class="w-100"> -->
+            <p>
+                It is our humble team effort to keep you safe, cared and delighted.
+                <!-- If you have any suggestions, please write to us at <a href="mailto:greenstopindia@gmail.com" style="color:#d73609">greenstopindia@gmail.com</a> . Your suggestions will help us to improve our customer focus and user interface. -->
+            </p>
+            <p>
+                Before you jump in, just click <a (click)="gotohelp()" target="_blank" style="color:#d73609;cursor: pointer;"> Help  </a>to know about our features and the pin codes that we currently serve.
+            </p>
+            <p>
+                If we are not in your pin code now, be sure we will be there shortly.
+            </p>
+            <p>
+                Enjoy ordering healthy food of your choice.
+            </p>
+            <span class="d-block">Thank you,</span>
+            <span class="d-block" cdkFocusInitial>Team Greenstop</span>
+            
+
+        </mat-dialog-content>
+    </div>
+    
+</div>

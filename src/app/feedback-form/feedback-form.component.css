@@ -1,0 +1,24 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .body-background{
+    /* background-image: url('/assets/img/icons/undraw_cooking_lyxy.svg'); */
+    background-image: url('/assets/img/davide-cantelli-jpkfc5_d-DI-unsplash.jpg');
+    /* background-repeat: no-repeat;*/
+    background-attachment: fixed; 
+    background-size: cover;
+    /* background-position: right bottom;  */
+    /* min-height:100vh;*/
+    /* background-size: 70% 70%; */
+    /* background-size: 40% 70%;
+    background-blend-mode: color-dodge; */
+    padding-bottom: 40px;
+    padding-top: 40px;
+}

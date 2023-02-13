@@ -1,0 +1,74 @@
+<div class="container" style="min-height:50vh;">
+    <h1>Report</h1>
+    <hr>
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Time slot wise items to cook</mat-card-title>
+                    <mat-card-subtitle>Select date to download file</mat-card-subtitle>
+                  </mat-card-header>
+                <mat-card-content>
+                    <form [formGroup]="getTimeSlotWiseItemsToCookFG">
+                        <div class="row">
+                            <div class="col-7">
+                                <mat-form-field class="w-100">
+                                    <mat-label>Select delivery date</mat-label>
+                                    <input matInput [matDatepicker]="picker1" formControlName="dateCtrl">
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                    <mat-error *ngIf="getTimeSlotWiseItemsToCookFG.controls.dateCtrl.hasError('required')">
+                                        Delivery date is <strong>required</strong>
+                                    </mat-error>
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-5">
+                                <!-- <button mat-raised-button type="submit" [disabled]="getTimeSlotWiseItemsToCookFG.invalid">
+          
+                                    {{getTimeSlotWiseItemsToCookIsLoading?'Processing data ...': 'Submit'}}
+                                                <span *ngIf="getTimeSlotWiseItemsToCookIsLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                  </button> -->
+                                  <a mat-raised-button [disabled]="getTimeSlotWiseItemsToCookFG.invalid" [href]="getTimeSlotWiseItemsToCookdownloadLink" download="file.xlsx"><span style="text-decoration: none;">Download File</span></a>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+        <div class="col-sm-6">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>Time slot wise items to deliver with details</mat-card-title>
+                    <mat-card-subtitle>Select date to download file</mat-card-subtitle>
+                  </mat-card-header>
+                <mat-card-content>
+                    <form [formGroup]="getTimeSlotWiseItemsToDeliverFG">
+                        <div class="row">
+                            <div class="col-7">
+                                <mat-form-field class="w-100">
+                                    <mat-label>Select delivery date</mat-label>
+                                    <input matInput [matDatepicker]="picker2" formControlName="dateCtrl">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                                    <mat-error *ngIf="getTimeSlotWiseItemsToDeliverFG.controls.dateCtrl.hasError('required')">
+                                        Delivery date is <strong>required</strong>
+                                    </mat-error>
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-5">
+                                <!-- <button mat-raised-button type="submit" [disabled]="getTimeSlotWiseItemsToCookFG.invalid">
+          
+                                    {{getTimeSlotWiseItemsToCookIsLoading?'Processing data ...': 'Submit'}}
+                                                <span *ngIf="getTimeSlotWiseItemsToCookIsLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                  </button> -->
+                                  <a mat-raised-button [disabled]="getTimeSlotWiseItemsToDeliverFG.invalid" [href]="getTimeSlotWiseItemsToDeliverdownloadLink" download="file.xlsx"><span style="text-decoration: none;">Download File</span></a>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+    </div>
+</div>

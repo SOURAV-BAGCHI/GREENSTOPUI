@@ -1,0 +1,58 @@
+.rating-container{
+    color: white;
+    /* background-color: green; */
+    /* padding: 6px; */
+    border-radius: 5px;
+    float: left;
+    margin-right: 10px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.rating-container span{
+    margin-right: 10px;
+    margin-left: 6px;
+}
+
+.review-title{
+    font-weight: bolder;
+    /* margin-left: 10px; */
+}
+
+.review{
+    font-size: 0.9rem;
+}
+
+.review-info{
+    font-size: 0.8rem;
+    color:#665f5f;
+}
+
+.dt-style{
+    margin-left: 10px;
+}
+
+.body-background{
+    /* background-image: url('/assets/img/icons/undraw_cooking_lyxy.svg'); */
+    background-image: url('/assets/img/emy-XoByiBymX20-unsplash.jpg');
+    /* background-repeat: no-repeat;*/
+    background-attachment: fixed; 
+    background-size: cover;
+    /* background-position: right bottom;  */
+    /* min-height:100vh;*/
+    /* background-size: 70% 70%; */
+    /* background-size: 40% 70%;
+    background-blend-mode: color-dodge; */
+    padding-bottom: 40px;
+    padding-top: 40px; 
+}
+
+.card-seperator{
+    margin-bottom: 15px;
+}
+
+.mat-card{
+    background: #ffffffd1;
+}

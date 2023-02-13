@@ -1,0 +1,36 @@
+<div style="height:100vh;">
+    <div class="example-button-container text-right">
+        <img src="assets/img/yoav-aziz-AiHJiRCwB3w-unsplash.jpg" alt="" class="dlg_img">
+        <!-- <span (click)="onNoClick()" style="font-size: 1.5rem;cursor: pointer;" >&#10005;</span> -->
+        <button mat-mini-fab class="dlg_close_btn" (click)="onNoClick()">&#10005;</button>
+      </div>
+      <!-- <hr> -->
+      <div class="text-center" *ngIf="(currentUserRole$ | async) as currentUserRole">
+        <label for="" class="h6">
+          <a [routerLink]='["/admin/current-order"]' style="color:black;text-decoration:none;" (click)="onNoClick()">Current Orders</a>
+          </label>
+          <hr cdkFocusInitial>
+          <label for="" class="h6">
+            <a [routerLink]='["/admin/order-history"]' style="color:black;text-decoration:none;" (click)="onNoClick()">Order History</a>
+          </label>
+           <hr *ngIf="currentUserRole=='ITAdmin'">
+          <label for="" class="h6" *ngIf="currentUserRole=='ITAdmin'">
+            <a [routerLink]='["/admin/register-employee"]' style="color:black;text-decoration:none;" (click)="onNoClick()">Register Employee</a>
+          </label>
+          <hr *ngIf="currentUserRole=='ITAdmin'">
+          <label for="" class="h6" *ngIf="currentUserRole=='ITAdmin'" >
+            <a [routerLink]='["/admin/view-employee"]' style="color:black;text-decoration:none;" (click)="onNoClick()">View Employee</a>
+          </label>
+          <hr *ngIf="currentUserRole=='ITAdmin' || currentUserRole=='ChiefManager' || currentUserRole=='CustomerService'">
+          <label for="" class="h6" *ngIf="currentUserRole=='ITAdmin' || currentUserRole=='ChiefManager' || currentUserRole=='CustomerService'">
+            <a [routerLink]='["/admin/reports"]' style="color:black;text-decoration:none;" (click)="onNoClick()">Reports</a>
+          </label>
+          <hr *ngIf="currentUserRole=='ITAdmin' || currentUserRole=='ChiefManager' || currentUserRole=='CustomerService'">
+          <label for="" class="h6" *ngIf="currentUserRole=='ITAdmin' || currentUserRole=='ChiefManager'">
+            <a [routerLink]='["/admin/modify-catagoryitem"]' style="color:black;text-decoration:none;" (click)="onNoClick()">Add/Modify List</a>
+          </label>
+          <!-- <hr cdkFocusInitial> -->
+      </div>
+      
+</div>
+

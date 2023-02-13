@@ -1,0 +1,87 @@
+<div class="body-background">
+    <div class="container min-ht">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="example-card  my-4">
+                    <div *ngIf="isLoadingData">
+                        <div>
+                            <!-- <strong>Loading Feedbacks...</strong>
+                            <div class="spinner-border text-success ml-auto" role="status" aria-hidden="true"></div>
+                          </div> -->
+                          <div>
+                              <mat-card class="card-seperator" style="background:#ffffff;">
+                                  <!-- <div class="row"> -->
+                                    
+                                    <!-- <div class="col-12">
+                                        <div class="p-2" ></div>
+                                        <mat-card-title>Loading Feedbacks...</mat-card-title>        
+                                    </div> -->
+                                <!-- </div> -->
+                                <h2>Loading Feedbacks ...</h2>
+                            </mat-card>
+                            <mat-card class="card-seperator" style="background: #ffffff;">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <img src="assets/gifs/paragraph_loader_gif.gif"  class="w-100" alt="loading menu">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <img src="assets/gifs/paragraph_loader_gif.gif"  class="w-100" alt="loading menu">
+                                    </div>
+                                </div>
+                            </mat-card>
+                          </div>
+                        </div>
+                    </div>
+                    <div *ngIf="feedbackList.length>0">
+                        <mat-card class="card-seperator">
+                            <h2>Feedbacks for Greenstop</h2>
+                        </mat-card>
+                        <mat-card>
+                            <div class="row">
+                                <div class="col-sm-12 my-3" *ngFor="let feedback of feedbackList">
+                                    <p>
+                                        <span class="rating-container bg-success" >
+                                        <span>{{feedback.rating}}</span>
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                    <span class="review-title">
+                                        {{feedback.reviewTitle}}
+                                    </span>
+                                    </p>
+                                    <p class="review">{{feedback.review}}</p>
+                                    <p class="review-info">
+                                        <span>
+                                            {{feedback.customerName}}
+                                        </span>
+                                        <span class="dt-style">
+                                            {{feedback.feedbackDate | date:'medium'}}
+                                        </span>
+                                    </p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </mat-card>
+                        <div class="mt-3">
+                            <mat-paginator [length]="pageCount"
+                                                      [pageSize]="pageSize"
+                                                      (page)="onPageFired($event)">
+                            </mat-paginator>
+                          </div>
+                    </div>
+                    <div *ngIf="!isLoadingData && feedbackList.length==0">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="assets/img/icons/rating.png" class="w-100" style="max-width: 100px;" alt="">
+                            </div>
+                            <div class="col-8">
+                                <div class="p-2" ></div>
+                                <mat-card-title>No feedbacks present till now <span *ngIf="searchTermTemp.length>0" style="color:chocolate;">for {{searchTermTemp}}</span>.</mat-card-title>        
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

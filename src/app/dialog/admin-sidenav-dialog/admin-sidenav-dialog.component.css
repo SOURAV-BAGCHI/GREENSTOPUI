@@ -1,0 +1,37 @@
+.dlg_img
+{
+    width: 126%;
+    position: relative;
+    left: -24px;
+    right: 24px;
+    top: -24px;
+}
+
+@media (max-width: 600px) {
+    .dlg_img
+    {
+        width: 124%;
+        position: relative;
+        left: -24px;
+        right: 24px;
+        top: -24px;
+    }
+}
+
+.example-button-container
+{
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.dlg_close_btn
+{
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background: orangered;
+}
+
+hr{
+    margin-top:0px;
+}

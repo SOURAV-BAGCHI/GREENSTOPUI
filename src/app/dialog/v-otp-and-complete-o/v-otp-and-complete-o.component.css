@@ -1,0 +1,17 @@
+.mat-stepper-vertical {
+    margin-top: 8px;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+
+  .example-margin {
+    margin: 0 12px;
+  }
+
+  .next-text{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: lightseagreen;
+  }

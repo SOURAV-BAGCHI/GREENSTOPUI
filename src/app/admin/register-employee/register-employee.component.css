@@ -1,0 +1,46 @@
+.example-card {
+    max-width: 400px;
+    margin-top:36px;
+    background: #ffffffde;
+  }
+  
+  .example-header-image {
+    background-image: url('/assets/img/icons/user.png');
+    background-size: cover;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+.register-btn{
+  margin-left: 36% !important;
+  margin-top: 25px;
+}
+
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+
+.body-background{
+  /* background-image: url('/assets/img/icons/undraw_cooking_lyxy.svg'); */
+  background-image: url('/assets/img/brooke-lark-08bOYnH_r_E-unsplash.jpg');
+  /* background-repeat: no-repeat;*/
+  background-attachment: fixed; 
+  background-size: cover;
+  /* background-position: right bottom;  */
+  /* min-height:100vh;*/
+  /* background-size: 70% 70%; */
+  /* background-size: 40% 70%;
+  background-blend-mode: color-dodge; */
+  padding-bottom: 40px;
+  padding-top: 10px;
+}

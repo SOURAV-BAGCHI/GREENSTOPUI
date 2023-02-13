@@ -1,0 +1,253 @@
+<div class="body-background">
+  <div class="row" style="margin-right:0px;">
+    <div class="col-sm-6 col-md-12 col-lg-6">
+      <!-- <img src="assets/img/icons/undraw_secure_login_pdn4.svg" alt="" class="w-100"> -->
+    </div>
+    <div class="col-sm-6 col-md-12 col-lg-6">
+      <div class="d-flex justify-content-center">
+        <mat-card class="example-card" >
+          <mat-card-header class="mb-3">
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Register / Login</mat-card-title>
+            <mat-card-subtitle></mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="my-3">
+              <div *ngIf="verificationCodeSend==false">
+                <form [formGroup]="insertForm" class="example-form" (ngSubmit)="sendLoginCode()">
+                  <div class="row">
+                    <div class="col-1">
+                      <i class="fab fa-whatsapp-square fa-2x logo"></i>
+                    </div>
+                    <div class="col-10">
+                      <mat-form-field class="example-form-field" appearance="outline">
+                        <mat-label>Enter your whatsapp number</mat-label>
+                        <input matInput formControlName="phoneFormControl" maxlength="10">
+                        
+                        <mat-hint align="end">{{phoneFormControl.value.length}} / 10</mat-hint>
+                        <mat-error *ngIf="phoneFormControl.hasError('required')">
+                            Phone number <strong>required</strong>
+                          </mat-error>
+                          <mat-error *ngIf="phoneFormControl.hasError('pattern')">
+                            Enter valid <strong>phone number</strong>
+                          </mat-error>
+                          <mat-error *ngIf="phoneFormControl.hasError('minLength')">
+                            Enter 10 digit <strong>phone number</strong>
+                          </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>  
+
+                      <div class="mb-4 pt-4 row">
+                        <div class="col-sm-12">
+                          <div id="recaptcha-container" 
+                          class="g-recaptcha"
+                          data-theme="light"
+                          data-sitekey="XXXXXXXXXXXXX">
+              
+                          </div>
+                        </div>
+                        
+                      </div>
+    
+                      <div class="text-center w-100">
+                        <button mat-raised-button (click)="sendLoginCode()" [disabled]="!isInsertFormValid()">
+    
+                            {{isRequestInProcess?'Sending OTP ...': 'Send verification OTP'}}
+                                        <span *ngIf="isRequestInProcess" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                          </button>
+                      </div>
+                      
+                </form>
+                <p class="mt-3">
+                  A 6 digit OTP will be sent to your mobile number. Verify the OTP to register/login with Greenstop.
+                </p>
+            </div>
+            <div  *ngIf="verificationCodeSend==true && user==null" class="my-4">
+              <form [formGroup]="verificationForm" (ngSubmit)="verifyLoginCode()">
+                  <mat-form-field class="example-form-field" appearance="outline">
+                      <mat-label>Enter OTP</mat-label>
+                      <input matInput type="text" formControlName="otpFormControl" maxlength="6">
+                      
+                      <mat-hint align="end">{{otpFormControl.value.length}} / 6</mat-hint>
+                      <mat-error *ngIf="otpFormControl.hasError('required')">
+                          OTP <strong>required</strong>
+                      </mat-error>
+                      <mat-error *ngIf="otpFormControl.hasError('minLength')">
+                        6 character is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <div class="text-center w-100">
+                    <button mat-raised-button (click)="verifyLoginCode()" [disabled]="verificationForm.invalid">
+    
+                        {{isRequestInProcess?'Verifying OTP ...': 'Verify OTP'}}
+                                    <span *ngIf="isRequestInProcess" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      </button>
+                  </div>
+              </form> 
+          </div>
+          <div *ngIf="user!=null && numberAvailable==0">
+            <form [formGroup]="insertDisplaynameForm" (ngSubmit)="onSubmit()">
+              <mat-form-field class="example-form-field" appearance="outline">
+                  <mat-label>Enter your name</mat-label>
+                  <input matInput formControlName="displaynameFormControl" maxlength="50">
+                  
+                  <mat-hint align="end">{{displaynameFormControl.value.length}} / 50</mat-hint>
+                  <mat-error *ngIf="displaynameFormControl.hasError('required')">
+                      User name <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="displaynameFormControl.hasError('maxLength')">
+                      User name cannot be <strong>greater than 50 characters</strong>
+                    </mat-error>
+              </mat-form-field>
+              <div class="text-center w-100">
+                <button mat-raised-button (click)="onSubmit()" [disabled]="verificationForm.invalid">
+    
+                    {{isRequestInProcess?'Logging user ...': 'Login'}}
+                                <span *ngIf="isRequestInProcess" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  </button>
+              </div>
+          </form>
+          </div>
+            </div>
+           
+          </mat-card-content>
+        </mat-card>
+      </div>
+      
+    </div>
+  
+  
+  
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <br>
+<br>
+<div class="con-body">
+    <div class="container">
+        <div class="row"> 
+            <div class="col-sm-4 col-md-3 col-lg-4"></div>
+            <div class="col-sm-4 col-md-6 col-lg-4  m-4">
+                <mat-card class="example-card my-3" style="background:white;">
+                    <mat-card-header class="d-none">
+                      <mat-card-title>Login</mat-card-title>                                   
+                    </mat-card-header>
+                    <div class="w-100 my-2 text-center">
+                        <span style="font-size: 20px;font-weight:500;" class="d-block mb-3">Login</span>
+                    </div>
+                    <hr>
+                    <mat-card-content>
+                        <div *ngIf="verificationCodeSend==false">
+                            <form [formGroup]="insertForm" (ngSubmit)="sendLoginCode()">
+                                <mat-form-field class="example-form-field" appearance="outline">
+                                    <mat-label>Enter phone number</mat-label>
+                                    <input matInput formControlName="phoneFormControl" maxlength="10">
+                                    
+                                    <mat-hint align="end">{{phoneFormControl.value.length}} / 10</mat-hint>
+                                    <mat-error *ngIf="phoneFormControl.hasError('required')">
+                                        Phone number <strong>required</strong>
+                                      </mat-error>
+                                      <mat-error *ngIf="phoneFormControl.hasError('pattern')">
+                                        Enter valid <strong>phone number</strong>
+                                      </mat-error>
+                                      <mat-error *ngIf="phoneFormControl.hasError('minLength')">
+                                        Enter 10 digit <strong>phone number</strong>
+                                      </mat-error>
+                                  </mat-form-field>
+                                  <div class="mb-4 pt-4 row">
+                                    <div class="col-sm-12">
+                                      <div id="recaptcha-container" 
+                                      class="g-recaptcha"
+                                      data-theme="light"
+                                      data-sitekey="XXXXXXXXXXXXX"
+                                      style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;">
+                          
+                                      </div>
+                                    </div>
+                                    
+                                  </div>
+    
+                                  <div class="text-center w-100">
+                                    <button mat-raised-button (click)="sendLoginCode()" [disabled]="!isInsertFormValid()">
+    
+                                        {{isRequestInProcess?'Sending OTP ...': 'Send verification OTP'}}
+                                                    <span *ngIf="isRequestInProcess" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                      </button>
+                                  </div>
+                                  
+                            </form>
+                        </div>
+                        <div  *ngIf="verificationCodeSend==true && user==null" class="my-4">
+                            <form [formGroup]="verificationForm" (ngSubmit)="verifyLoginCode()">
+                                <mat-form-field class="example-form-field" appearance="outline">
+                                    <mat-label>Enter OTP</mat-label>
+                                    <input matInput type="text" formControlName="otpFormControl" maxlength="6">
+                                    
+                                    <mat-hint align="end">{{otpFormControl.value.length}} / 6</mat-hint>
+                                    <mat-error *ngIf="otpFormControl.hasError('required')">
+                                        OTP <strong>required</strong>
+                                    </mat-error>
+                                    <mat-error *ngIf="otpFormControl.hasError('minLength')">
+                                      6 character is <strong>required</strong>
+                                  </mat-error>
+                                </mat-form-field>
+                                <div class="text-center w-100">
+                                  <button mat-raised-button (click)="verifyLoginCode()" [disabled]="verificationForm.invalid">
+  
+                                      {{isRequestInProcess?'Verifying OTP ...': 'Verify OTP'}}
+                                                  <span *ngIf="isRequestInProcess" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div *ngIf="user!=null && numberAvailable==0">
+                          <form [formGroup]="insertDisplaynameForm" (ngSubmit)="onSubmit()">
+                            <mat-form-field class="example-form-field" appearance="outline">
+                                <mat-label>Enter User name</mat-label>
+                                <input matInput formControlName="displaynameFormControl" maxlength="50">
+                                
+                                <mat-hint align="end">{{displaynameFormControl.value.length}} / 50</mat-hint>
+                                <mat-error *ngIf="displaynameFormControl.hasError('required')">
+                                    User name <strong>required</strong>
+                                  </mat-error>
+                                  <mat-error *ngIf="displaynameFormControl.hasError('maxLength')">
+                                    User name cannot be <strong>greater than 50 characters</strong>
+                                  </mat-error>
+                            </mat-form-field>
+                            <div class="text-center w-100">
+                              <button mat-raised-button (click)="onSubmit()" [disabled]="verificationForm.invalid">
+
+                                  {{isRequestInProcess?'Logging user ...': 'Login'}}
+                                              <span *ngIf="isRequestInProcess" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </form>
+                        </div>
+                         
+                    </mat-card-content>
+
+                  </mat-card>
+                  
+            </div>
+            <div class="col-sm-4 col-md-3 col-lg-4"></div>
+            
+            
+        </div>
+    </div>
+</div> -->
+

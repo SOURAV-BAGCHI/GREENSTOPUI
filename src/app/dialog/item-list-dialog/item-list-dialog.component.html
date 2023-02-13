@@ -1,0 +1,78 @@
+<h3 mat-dialog-title class="text-center">Item List</h3>
+<mat-dialog-content class="mat-typography">
+
+<div>
+    <div class="example-container mat-elevation-z8">
+        <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        </div>
+    </div>
+    <div class="text-right">
+        <button mat-raised-button (click)="updateOrCreateRecord(0,false)">Create new Item</button>
+    </div>
+    <div class="example-table-container">
+        <table mat-table #table
+         [dataSource]="dataSource" multiTemplateDataRows
+         class="mat-elevation-z8"  *ngIf="dataSource">
+        
+         <!-- <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> Id </th>
+            <td mat-cell *matCellDef="let element;" class="text-center"> {{element.id}} </td>
+        </ng-container> -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> Name </th>
+            <td mat-cell *matCellDef="let element;" class="text-center"> {{element.name1}} </td>
+        </ng-container>
+        <ng-container matColumnDef="available">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> Is Available </th>
+            <td mat-cell *matCellDef="let element;" class="text-center"> {{element.available?'Yes':'No'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="text-center"> Actions </th>
+            <td mat-cell *matCellDef="let element;" class="text-center"> 
+                <img src="assets/img/icons/refresh.png" alt="Update" class="mr-2 btn" (click)="updateOrCreateRecord(element.id,true)">  
+                <img src="assets/img/icons/remove.png" alt="Delete" class="mr-2 btn" (click)="deleteItem(element.id)"> 
+            </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element;let i=index;" [attr.colspan]="columnsToDisplay.length">
+                <div class="example-element-detail"
+                  [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  <div class="example-element-detail">
+                    <!-- <div class="example-element-diagram flex-item-part">
+                        <img src={{hostname+element.image}} alt="" class="w-100">
+                    </div> -->
+                    <div class="example-element-diagram flex-item-part">
+                        <label for="" class="mr-2 d-block">Name 2: {{element.name2}}</label>
+                        <label for="" class="mr-2 d-block">Details 1: {{element.detail}}</label>
+                        <label for="" class="mr-2 d-block">Details 2: {{element.detail2}}</label>
+                        <label for="" class="mr-2 d-block">Description 1 : {{element.description}}</label>
+                        <label for="" class="mr-2 d-block">Description 2: {{element.description2}}</label>
+                        <label for="" class="mr-2 d-block">Type: {{element.type}}</label>
+                        <label for="" class="mr-2 d-block">Price: {{element.price}}</label>
+                        <label for="" class="mr-2 d-block">Available: {{element.available}}</label>
+                        <!-- <button mat-raised-button>View item list</button> -->
+                    </div>
+                  </div>
+                </div>
+            </td>
+        </ng-container>
+
+         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+         <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+             class="example-element-row"
+             [class.example-expanded-row]="expandedElement === element"
+             (click)="expandedElement = expandedElement === element ? null : element">
+         </tr>
+         <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+    </div>
+</div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+  </mat-dialog-actions>

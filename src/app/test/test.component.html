@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="firstFormGroup" class="example-form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-form-field" appearance="outline">
+          <mat-label>Enter your whatsapp number</mat-label>
+          <input matInput formControlName="phoneControl" maxlength="10">
+          
+          <mat-hint align="end">{{firstFormGroup.controls.phoneControl.value.length}} / 10</mat-hint>
+          <mat-error *ngIf="firstFormGroup.controls.phoneControl.hasError('required')">
+              Phone number <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="firstFormGroup.controls.phoneControl.hasError('pattern')">
+              Enter valid <strong>phone number</strong>
+            </mat-error>
+            <mat-error *ngIf="firstFormGroup.controls.phoneControl.hasError('minLength')">
+              Enter 10 digit <strong>phone number</strong>
+            </mat-error>
+        </mat-form-field>
+        <div class="text-center w-100">
+          <button type="submit" mat-raised-button [disabled]="!firstFormGroup.valid">
+
+              {{isRequestInProcess?'login ...': 'Test login'}}
+                          <span *ngIf="isRequestInProcess" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

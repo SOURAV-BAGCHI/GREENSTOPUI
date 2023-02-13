@@ -1,0 +1,38 @@
+<div style="height:100vh;">
+    <div class="example-button-container">
+      <img src="assets/img/yoav-aziz-AiHJiRCwB3w-unsplash.jpg" alt="" class="dlg_img">
+        <!-- <span (click)="onNoClick()" style="font-size: 1.5rem;cursor: pointer;" >&#10005;</span> -->
+        <button mat-mini-fab class="dlg_close_btn" (click)="onNoClick()">&#10005;</button>
+        <button mat-fab class="logo_btn"><img src="assets/img/logo_g.png" alt="" style="position: relative;top: -5px;"></button>
+      </div>
+      <!-- <hr>  -->
+      <div class="text-center">
+        <label for="" class="h6">
+          <a [routerLink]='["/"]' style="color:black;text-decoration:none;" (click)="onNoClick()">Home</a>
+          </label>
+          <hr cdkFocusInitial>
+          <label for="" class="h6">
+            <a [routerLink]='["/whywe"]' style="color:black;text-decoration:none;" (click)="onNoClick()">Why we?</a>
+          </label>
+           <hr>
+          <label for="" class="h6">
+            <a href="http://bit.ly/greenstopfeedback" target="_blank" style="color:black;text-decoration:none;" (click)="onNoClick()">Feedbacks</a>
+          </label>
+          <!-- <hr cdkFocusInitial> -->
+          <!-- <label for="" class="h6">
+            Feedback
+          </label>
+          <hr> -->
+          <!-- <label for="" *ngIf="!(loginStatus$ | async) as loginStatus">
+            <a class="btn btn-default text-dark d-none d-lg-block"  [routerLink]='["/user/login"]' >Login</a>
+          </label> -->
+          <!-- <label for="" class="h6" *ngIf="!loginStatus">
+            <a [routerLink]='["/user/login"]' class="h6">Login</a>
+          </label> -->
+          <!-- <li style="display: inline-block; list-style-type:none; padding:10px;" *ngIf="!(loginStatus$ | async) as loginStatus">
+            <a class="btn btn-default text-dark d-none d-lg-block"  [routerLink]='["/user/login"]' *ngIf="loginStatus" >Login</a>
+        </li> -->
+      </div>
+      
+</div>
+

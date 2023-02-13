@@ -1,0 +1,137 @@
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #f0f5f5bf;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    max-width: 30vw;
+    /* border: 2px solid black; */
+    /* padding: 8px; */
+    font-weight: lighter;
+    /* margin: 8px 0; */
+    /* height: 100px; */
+  }
+  
+  @media (max-width: 600px) {
+    .example-element-diagram {
+      min-width: 80px;
+      max-width: 30vw;
+      /* border: 2px solid black; */
+      /* padding: 8px; */
+      font-weight: lighter;
+      /* margin: 8px 0; */
+      /* height: 140px; */
+    }
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+   
+  .order-font{
+    font-size: 0.5rem;
+    color:blueviolet;
+    cursor:pointer;
+    position: relative;
+    left: -7px;
+  }
+  
+  @media (min-width: 600px) {
+    .order-font{
+      font-size: 1rem;
+      color:green;
+      left: 0px;
+    }
+  }
+  
+  .flex-item-part {
+    /* background-color: #f1f1f1; */
+    padding: 10px;
+    flex: 50%;
+  }
+  
+  .flex-item-full {
+    /* background-color: #f1f1f1; */
+    padding: 10px;
+    flex: 100%;
+  }
+  
+  /* Structure */
+  .example-container {
+    position: relative;
+    /* min-height: 200px; */
+  }
+  
+  .fa-check-square{
+    margin-right: 5px;
+    color:darkorange;
+  }
+  
+  .example-table-container {
+    position: relative;
+    /* height: 400px; */
+    overflow: auto;
+  }
+  
+  .example-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .example-rate-limit-reached {
+    color: #980000;
+    max-width: 360px;
+    text-align: center;
+  }
+  
+  /* Column Widths */
+  .mat-column-number,
+  .mat-column-state {
+    max-width: 64px;
+  }
+  
+  .mat-column-created {
+    max-width: 124px;
+  }
+  

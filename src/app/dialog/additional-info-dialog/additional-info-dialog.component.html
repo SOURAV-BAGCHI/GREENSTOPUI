@@ -1,0 +1,66 @@
+<div class="example-card h-100" style="padding: 0px;">
+
+    <div class="card h-100 border-light mb-3">
+
+        <div class="card-body pt-3 px-3 pb-0">
+            <div class="example-button-container">
+                <button mat-mini-fab aria-label="Example icon button with a home icon" (click)="onNoClick()" style="background: azure;">
+                   <span style="color:indianred;">&#10060;</span>
+                </button>
+              </div>
+              <p class="h6" cdkFocusInitial><b>{{data.name}}</b> <i class="pl-2">{{data.detail}}</i></p>
+              <p class="h6 text-secondary">{{data.name2}}</p>
+              <!-- <p class="text-muted" style="font-size: small;">Catagory: {{(data.type===1?'Celebrations':'Regular')}}</p> -->
+              <p class="text-muted" style="font-size: small;">Catagory: {{(data.type===1?'Main':(data.type===2?'Snacky':(data.type===3?'Accompaniment':'Main')))}}</p>
+              <p class="card-text">{{data.description}}</p>                
+              <span class="card-text d-block"><b>&#8377; {{data.price}}</b>  </span>
+            <div class="form-floating my-4">
+                <label for="floatingTextarea2">Note for the cook</label>
+                <!-- <textarea cdkFocusInitial class="form-control" [(ngModel)]="noteForTheCook" placeholder="Eg: Do give less spice with medium oil" id="floatingTextarea2" style="height: 100px"></textarea>
+                 -->
+                 <span class="example-list-section">
+                    <ul>
+                      <li *ngFor="let subtask of task.subtasks">
+                        <mat-checkbox [(ngModel)]="subtask.completed"
+                                      [color]="subtask.color"
+                                      (ngModelChange)="updateAllComplete()">
+                          {{subtask.name}}
+                        </mat-checkbox>
+                      </li>
+                    </ul>
+                  </span>
+            </div>
+        </div>
+        <div>
+            
+        </div>
+        <div class="card-footer bg-white border-light">
+            <div class="row justify-content-center">
+                <div class="col-7">
+                    <div class="input-group">
+                        <input type="button" value="-" class="button-minus border-right-0 border-light" data-field="quantity" [disabled]="data.quantity==0" (click)="data.quantity=data.quantity-1">
+                        <!-- <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field"> -->
+                        <label for="" class="quantity-field pt-2 border-top border-bottom border-light">{{data.quantity}}</label>
+                        <input type="button" value="+" class="button-plus border-left-0 border-light" data-field="quantity" [disabled]="data.quantity==15" (click)="data.quantity=data.quantity+1">
+                      </div>
+                      
+                </div>
+                <div class="col-5">
+                    <button type="button" mat-raised-button [disabled]="data.quantity==0" class=" w-100 mt-3" (click)="addToCart(data,noteForTheCook)">
+                        <span class="pr-1">
+                            Add to Cart 
+                        </span>
+                        <!-- 739cc7 -->
+                        <!-- <span class="text-info" style="font-size: 0.90rem;float:right;margin-top: 1px;">
+                            <b>&#8377;{{data.price}}</b> 
+                        </span> -->
+                    </button>
+                   
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+  

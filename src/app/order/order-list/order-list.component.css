@@ -1,0 +1,80 @@
+.order-container{
+    min-height: 100vh;
+    background: #a9a9a94a;
+    padding-top:10px;
+}
+
+.order-heading{
+    font-size: small;
+    color: #f5f5f5de;
+}
+
+.dot{
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+._active {
+    
+    background-color: white;
+    border:2px solid green;
+  }
+
+._complete {
+    background-color: green;
+    border:2px solid green;
+  }
+
+._requestforcancel {
+    background-color: white;
+    border:3px solid yellow;
+  }
+
+._cancelled {
+    background-color: red;
+    border:2px solid red;
+  }
+
+  a.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  a.active{
+    cursor: pointer;
+    pointer-events: all;
+  }
+
+  .cancel{
+    color:red;
+    float:right;
+    font-size: small;
+  }
+
+  .body-background{
+    /* background-image: url('/assets/img/icons/undraw_cooking_lyxy.svg'); */
+    background-image: url('/assets/img/emy-XoByiBymX20-unsplash.jpg');
+    /* background-repeat: no-repeat;*/
+    background-attachment: fixed; 
+    background-size: cover;
+    /* background-position: right bottom;  */
+    /* min-height:100vh;*/
+    /* background-size: 70% 70%; */
+    /* background-size: 40% 70%;
+    background-blend-mode: color-dodge; */
+    padding-bottom: 40px;
+    padding-top: 10px;
+  }
+
+  .mat-card{
+    background: #ffffffd1;
+  }
+
+  .leave-feedback{
+    font-size: small;
+    color:#166544;
+    text-decoration: none;
+  }

@@ -1,0 +1,87 @@
+<div class="body-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- <img src="assets/img/icons/undraw_Add_user_re_5oib.svg" class="w-100" alt=""> -->
+      </div>
+      <div class="col-sm-6">
+        <mat-card class="example-card">
+          <mat-card-header> 
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Register new user</mat-card-title>
+            <mat-card-subtitle>Greenstop employee</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+              <div class="my-3">
+                  <form class="example-form" [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Phone number</mat-label>
+                        <input type="text" matInput formControlName="phoneCtrl" placeholder="1234567890" maxlength="10">
+                        <mat-error *ngIf="registerFormGroup.controls.phoneCtrl.hasError('pattern') && !registerFormGroup.controls.phoneCtrl.hasError('required')">
+                          Please enter a valid phone number
+                        </mat-error>
+                        <mat-error *ngIf="registerFormGroup.controls.phoneCtrl.hasError('required')">
+                          Phone number is <strong>required</strong>
+                        </mat-error>
+                      </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                          <mat-label>Name</mat-label>
+                          <input type="text" matInput formControlName="nameCtrl" placeholder="User name" maxlength="50">
+                          <mat-error *ngIf="registerFormGroup.controls.nameCtrl.hasError('maxLength') && !registerFormGroup.controls.nameCtrl.hasError('required')">
+                            Name max 50 characters
+                          </mat-error>
+                          <mat-error *ngIf="registerFormGroup.controls.nameCtrl.hasError('required')">
+                            Name is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                          <mat-label>Password</mat-label>
+                          <input type="text" matInput formControlName="passwordCtrl" placeholder="Password" maxlength="20">
+                          <mat-error *ngIf="registerFormGroup.controls.passwordCtrl.hasError('maxLength') && !registerFormGroup.controls.passwordCtrl.hasError('required')">
+                            Password max 20 characters
+                          </mat-error>
+                          <mat-error *ngIf="registerFormGroup.controls.passwordCtrl.hasError('required')">
+                            Password is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                          <mat-label>Role</mat-label>
+                          <input type="text" matInput formControlName="roleCtrl" [matAutocomplete]="auto">
+                          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                              {{option.name}}
+                            </mat-option>
+                          </mat-autocomplete>
+                          <mat-error *ngIf="registerFormGroup.controls.roleCtrl.hasError('required')">
+                              Role is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </form>
+              </div>
+            <p>
+              By registering a user as Greenstop employee, you are letting the user with the authority to make changes to the system.
+            </p>
+      
+            <div>
+              <button type="submit" mat-button class="register-btn" [disabled]="registerFormGroup.invalid" (click)="onSubmit()">
+                
+                {{isloadingData?'Registering': 'Register'}}
+                                      <span *ngIf="isloadingData" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              </button>
+            </div>
+      
+          </mat-card-content>
+          
+          <!-- <mat-card-actions style="position: relative; left:36%;">
+            <button mat-button>Register</button>
+          </mat-card-actions> -->
+      </mat-card>
+      </div>
+      
+    
+    </div>
+  </div>
+  
+</div>
+
+

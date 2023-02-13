@@ -1,0 +1,90 @@
+<div #navbar *ngIf="!(isAdminSection$ | async) as isadminSection" >
+    <div class="container">
+        <div class="row my-4" >
+            <div class="col-lg-4 col-2" style="position: relative;">
+                <ul class="d-none d-lg-block my-auto" style="position: absolute;top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);" *ngIf="(isnotLoginPage$ | async) as isnotLoginPage">
+                    <li style="display: inline-block; list-style-type:none; padding:10px;"><a [routerLink]='["/"]' class="header-link" routerLinkActive="active-cls">Home</a></li>
+					<li style="display: inline-block; list-style-type:none; padding:10px;"><a [routerLink]='["/whywe"]' class="header-link" routerLinkActive="active-cls">Why we?</a></li>
+                    <!-- <li style="display: inline-block; list-style-type:none; padding:10px;"><a [routerLink]='["/termsandconditions"]' class="header-link">T&C</a></li> -->
+                    <li style="display: inline-block; list-style-type:none; padding:10px;"><a href="http://bit.ly/greenstopfeedback" class="header-link" target="_blank"> Feedbacks</a></li>
+                    
+                </ul>
+                <div class="d-lg-none" style="position: absolute;top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);">
+                    <i class="fas fa-bars my-auto btn" (click)="openSidenav()" *ngIf="(isnotLoginPage$ | async) as isnotLoginPage"></i>
+                </div>
+            </div>
+            <div class="col-lg-4 col-7">
+                <a [routerLink]='["/"]'><img src="assets/img/GS_Logo_IIF.png" class="w-100" alt=""></a>
+            </div>
+            <!-- <div>
+                <ul *ngIf="(isnotLoginPage$ | async) as isnotLoginPage">
+                    <li class="nav-item" *ngIf="(loginStatus$ | async) as loginStatus">
+                        <a class="nav-link text-dark"  [routerLink]='["/order"]'>Orders</a>
+                      </li>
+                      <li class="nav-item" *ngIf="!(loginStatus$ | async) as loginStatus">
+                        <a class="nav-link text-dark"  [routerLink]='["/user/login"]' *ngIf="loginStatus">Login</a>
+                      </li>
+                     
+                      <li class="nav-item" *ngIf="(loginStatus$ | async) as loginStatus">
+                        <a class="nav-link text-danger" *ngIf="(displayName$ | async) as UserDisplayName">{{UserDisplayName | uppercase}}</a>
+                      </li>
+                      <li class="nav-item" *ngIf="(loginStatus$ | async) as loginStatus">
+                        <a class="btn btn-primary text-white" *ngIf="(loginStatus)" (click)="onLogout()">Logout</a>
+                      </li>
+                </ul>
+            </div> -->
+            <div class="col-lg-4 col-3 text-center" style="position: relative;">
+                    <div *ngIf="(isnotLoginPage$ | async) as isnotLoginPage">
+                        <i class="fas fa-shopping-cart btn" style="position: absolute;top: 50%;right: 35%;
+                        -ms-transform: translateY(-50%);
+                        transform: translateY(-50%);" (click)="openCart()">
+                        <span class="badge rounded-pill text-white" style="margin-left: -2px;background-color: chocolate;" *ngIf="itemCount>0">{{itemCount}}</span>    
+                        </i>
+                        <!-- <i class="fa fa-sign-in" aria-hidden="true"></i> -->
+
+                        <div *ngIf="(loginStatus$ | async) as loginStatus" style="top:2.5vh;right:13px;">
+                             <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="(displayName$ | async) as UserDisplayName" class="user_btn">{{UserDisplayName | initials}}</button>
+                                <mat-menu #menu="matMenu">
+                                    <a class="link-color" [routerLink]='["/order"]' mat-menu-item *ngIf="loginStatus">
+                                        <!-- <img src="assets/img/icons/food-tray.png" class="menu-img" alt=""> <span (click)="gotoorders()" class="menu-span">Orders</span> -->
+                                        <img src="assets/img/icons/food-tray.png" class="menu-img" alt=""> <span class="menu-span">Orders</span>
+                                    </a>
+                                    <a class="link-color" mat-menu-item *ngIf="loginStatus" (click)="onLogout()">
+                                        <img src="assets/img/icons/log-out.png" class="menu-img" alt=""> <span *ngIf="(loginStatus)" (click)="onLogout()" class="menu-span">Logout</span>
+                                    </a>
+                                    <a class="link-color" [routerLink]='["/admin/current-order"]' mat-menu-item *ngIf="!(isRoleCustomr$|async) as customer">
+                                        <!-- <img src="assets/img/icons/statistics.png" class="menu-img" alt=""> <span (click)="gotodashboard()" class="menu-span">Dashboard</span> -->
+                                        <img src="assets/img/icons/statistics.png" class="menu-img" alt=""> <span class="menu-span">Dashboard</span>
+                                    </a>
+                                    <!-- <ng-template [ngIf]="!(isRoleCustomr$|async) as customer">
+                                        <p>
+                                            Hello world
+                                        </p>
+                                    </ng-template> -->
+                                    <div *ngIf="!(isRoleCustomr$|async) as customer">
+                                        <button mat-menu-item *ngIf="isNotificationSectionActive && operationName!=null">
+                                            <i class="far" style="font-size: 1.7em;" [ngClass]="{'fa-bell':operationName==='Allow notifications','fa-bell-slash':operationName==='Deny notifications'}"></i> <span (click)="notificationOperation()" class="menu-span">{{operationName}}</span>
+                                        </button>
+                                    </div>
+                                    
+                                </mat-menu>
+                        </div>
+                        <div *ngIf="!(loginStatus$ | async) as loginStatus">
+                            <a class="btn btn-default text-dark d-none d-lg-block header-link"  [routerLink]='["/user/login"]' *ngIf="loginStatus" routerLinkActive="active-cls" style="position: absolute;top:34%;right:50%;">Login to Order</a>
+                            <a [routerLink]='["/user/login"]' class="d-lg-none" style="top:2.5vh;right:13px;"><img src="assets/img/icons/login.png" class="login_btn" alt=""></a>
+                            <!-- <a class="btn btn-default text-dark d-lg-none"  [routerLink]='["/user/login"]' *ngIf="loginStatus" style="position: absolute;top:23%;right:50%;"><i class="fa fa-sign-in" aria-hidden="true"></i></a> -->
+                        </div>
+                    </div>
+                    
+                   
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div id="recaptcha-container">
+
+</div> --> 

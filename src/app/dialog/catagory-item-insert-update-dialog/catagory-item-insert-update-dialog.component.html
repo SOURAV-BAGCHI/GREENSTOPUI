@@ -1,0 +1,80 @@
+<h3 mat-dialog-title>{{title}}</h3>
+<mat-dialog-content class="mat-typography">
+    <div *ngIf="isCatagoryOperation && isDataLoaded">
+        <form [formGroup]="catagoryFG" (ngSubmit)="catagorySubmit()">
+            <ng-template matStepLabel>Enter catagory name</ng-template>
+            <mat-form-field >
+                <mat-label>Catagory name</mat-label>
+                <input matInput placeholder="Enter catagory name" formControlName="name" maxlength="100" required>
+              </mat-form-field>
+              <mat-form-field >
+                <mat-label>Priority</mat-label>
+                <input matInput placeholder="Controls order of appearance" formControlName="priority" required>
+              </mat-form-field>
+              <!-- <mat-form-field >
+                <mat-label>Available</mat-label>
+                <input matInput placeholder="Available if servable" formControlName="available" required>
+            </mat-form-field> -->
+            <mat-slide-toggle [color]="toggleColor" formControlName="available">Catagory available</mat-slide-toggle>
+            <!-- <mat-form-field > -->
+              <br>
+              <br>
+              <mat-label>Catagroy Image</mat-label>
+              <input type="file" placeholder="Choose image for catagory" formControlName="file" (change)="onFileChange($event)">
+            <!-- </mat-form-field> -->
+            <br>
+            <br>
+            <mat-form-field >
+              <mat-label>Image filename</mat-label>
+              <input matInput placeholder="Custom name for image file" formControlName="filename" required>
+            </mat-form-field>
+
+            <button mat-raised-button type="submit">Submit</button>
+        </form>
+    </div>
+    <div *ngIf="!isCatagoryOperation && isDataLoaded">
+      <form [formGroup]="itemFG" (ngSubmit)="itemSubmit()">
+        <mat-form-field >
+          <mat-label>Name 1</mat-label>
+          <input matInput placeholder="Enter name 1" formControlName="name1" maxlength="100" required>
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Name 2</mat-label>
+          <input matInput placeholder="Enter name 2" formControlName="name2" maxlength="100">
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Item detail</mat-label>
+          <input matInput placeholder="Enter item detail" formControlName="detail" maxlength="100" >
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Item detail 2</mat-label>
+          <input matInput placeholder="Enter item detail 2" formControlName="detail2" maxlength="100">
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Item type</mat-label>
+          <input matInput placeholder="Enter item type" formControlName="type" maxlength="100">
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Item description</mat-label>
+          <input matInput placeholder="Enter item description" formControlName="description" required>
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Item description 2</mat-label>
+          <input matInput placeholder="Enter item description 2" formControlName="description2">
+        </mat-form-field>
+        <mat-form-field >
+          <mat-label>Item price</mat-label>
+          <input matInput placeholder="Enter item price" formControlName="price" maxlength="100" required>
+        </mat-form-field>
+        <mat-slide-toggle [color]="toggleColor" formControlName="available">Item available</mat-slide-toggle>
+        <br>
+        <br>
+        <button mat-raised-button type="submit">Submit</button>
+      </form>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+  </mat-dialog-actions>

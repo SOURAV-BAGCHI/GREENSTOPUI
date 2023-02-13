@@ -1,0 +1,19 @@
+<h2 mat-dialog-title style="color:#6c757d">Order Status Log</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="container">
+        <div class="row">
+            <h3>Order Id : {{orderId}}</h3>
+            <div *ngIf="orderStatusLog" class="col-sm-12">
+                <div class="row" *ngFor="let sl of orderStatusLog">
+                    <div class="col-6" *ngIf="statusMap.has(sl.Status)">
+                        <span [ngClass]="{'text-success':sl.Status==8,'text-danger':sl.Status==9}">{{statusMap.get(sl.Status)}}</span>
+                    </div>
+                    <div class="col-6" *ngIf="statusMap.has(sl.Status)">{{sl.On |date:'medium'}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+<button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+</mat-dialog-actions>

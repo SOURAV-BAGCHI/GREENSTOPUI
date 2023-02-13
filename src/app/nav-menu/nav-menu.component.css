@@ -1,0 +1,159 @@
+/*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+* Get free snippets on bootpen.com
+*******************************/
+.modal.left .modal-dialog,
+.modal.right .modal-dialog {
+  position: fixed;
+  margin: auto;
+  width: 320px;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+      -ms-transform: translate3d(0%, 0, 0);
+       -o-transform: translate3d(0%, 0, 0);
+          transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content,
+.modal.right .modal-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.modal.left .modal-body,
+.modal.right .modal-body {
+  padding: 15px 15px 80px;
+}
+
+/*Left*/
+.modal.left.fade .modal-dialog{
+  left: -320px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+     -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+       -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+          transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.left.fade.in .modal-dialog{
+  left: 0;
+}
+      
+/*Right*/
+.modal.right.fade .modal-dialog {
+  right: -320px;
+  -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+     -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+       -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+          transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.modal.right.fade.in .modal-dialog {
+  right: 0;
+}
+
+/* ----- MODAL STYLE ----- */
+.modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.modal-header {
+  border-bottom-color: #EEEEEE;
+  background-color: #FAFAFA;
+}
+
+.user_btn{
+  background: #236f53;
+  color: white;
+  position: absolute;
+
+  right: 5vw;
+  top: 29%;
+}
+@media (max-width: 800px)
+{
+  .user_btn{
+    background: #236f53;
+    color: white;
+    position: absolute;
+    right: 2px;
+    top: 31%;
+  }
+}
+
+@media (max-width: 600px)
+{
+  .user_btn{
+    background: #236f53;
+    color: white;
+    position: absolute;
+    right: 2px;
+    top: 5px;
+  }
+}
+
+.menu-img{
+  width:18%;
+  margin-right: 10px;
+}
+
+.menu-span{
+  padding-left: 15px;
+}
+
+.login_btn{
+  /* background: #236f53; */
+  color: white;
+  position: absolute;
+  width:34px;
+  right: 5vw;
+  top: 29%;
+}
+@media (max-width: 800px)
+{
+  .login_btn{
+    /* background: #236f53; */
+    color: white;
+    position: absolute;
+    right: 2px;
+    top: 35%;
+    width:34px;
+  }
+}
+
+@media (max-width: 600px)
+{
+  .login_btn{
+    /* background: #236f53; */
+    color: white;
+    position: absolute;
+    right: 9px;
+    top: 11px;
+    width:22px;
+  }
+}
+
+.header-link{
+  color:black;
+  text-decoration:none;
+  font-weight: 600;
+}
+.header-link:hover{
+  color:#d73609;
+}
+
+.link-color{
+  text-decoration: none;
+  color: #000000DE;
+}
+
+.menu-span{
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  padding-top: 7px;
+  font-size: 1em;
+  margin-right: 4px;
+}

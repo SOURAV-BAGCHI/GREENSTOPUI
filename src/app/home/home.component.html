@@ -1,0 +1,259 @@
+<div>
+    <div id="header" #header>
+        <div class="card"  [ngClass]="{'sticky':isSticky===true}">
+            <div class="card-body" style="padding:0rem;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-9 mt-3">
+                            <div class="wrapper">
+                                <div class="item h6" *ngFor='let item of catagoryDetails;index as itmx' (click)='scroll(item.id+"_")'><span class="d-block" [ngClass]="{'face':itmx==0}">{{item.name}}</span></div>
+                                
+                            </div>
+                            <div *ngIf="loadingData">
+                                <img src="assets/gifs/menu_loader_gif.gif" style="height:35px;" class="w-100" alt="loading menu">
+                            </div>
+                        </div>
+                        <div class="col-sm-3 go-if-mobile-sticky pd-lft-responsive">
+                            <form #searchForm="ngForm">
+                                <div class="input-group border ">
+                                    <div class="input-group-prepend border-0">
+                                        <button id="button-addon4" type="button" class="btn btn-link text-info"><i class="fa fa-search"></i></button>
+                                        
+                                    </div>
+                                    <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon4" class="form-control bg-none border-0" ngModel required name="searchTerm" autocomplete="off" #search>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>                
+            </div>
+        </div>      
+    </div>
+    <div style="background:black;height: 100%;">
+        <div class="container text-white">
+            <div class="row ">
+                <!-- <div class="col-sm-7 p-3 mt-3">
+                    <p class="h2">
+                        Put any item in the cart to view.
+                    </p>
+                    <p>
+                        Allergens/Special Diets: We use all major food allergens in our kitchen—nuts, peanuts, fish, shellfish, eggs, dairy, wheat, soy—but we have chosen to cook with pure vegetable oil and not add dairy to dishes that can be made without. 
+                    </p>
+                </div>
+                <div class="col-sm-5 text-center">
+                    <img src="assets/img/G_img111.jpg" alt="" class="my-3">
+                </div> -->
+                <div class="col-sm-6 p-0 ">
+                    <img src="assets/img/green_stop_bg_write.png" class="w-100 h-100" alt="">
+                </div>
+                <div class="col-sm-6 p-0">
+                    <img src="assets/img/green_stop_bg.png" class="w-100 h-100" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body-background">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12" style="height:50px;">
+                    <!-- <p class="h3" style="    font-weight: bold;
+                                            font-size: 2rem;
+                                            color: white;
+                                            text-align: center;
+                                            margin-top: 40px;
+                                            margin-bottom: 30px;
+                                            font-family: -webkit-pictograph;">Bit About Us</p> -->
+                </div>
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6 pb-3">
+                            <img src="assets/img/bengali restaurant_bengali food_bengali recipe.jpg" class="w-100 pb-3" alt="">
+                        </div>
+                        <div class="col-sm-6 pb-3 foreground">
+                            <p class="h3" style="font-weight: bold;
+                                            font-size: 2rem;
+                                            color: white;
+                                            text-align: center;
+                                            margin-bottom: 30px;
+                                            font-family: monospace;">BIT ABOUT US</p>
+                            <p class="text-white text-center h4" style="font-weight:bold;">
+                                 A microcosm of Indian flavours
+                            </p>
+                            <p class="text-white h6">
+                                Our mission is to serve our customers healthy and tasty foods to keep them ordering us and build a long-term collaborative relationship. We would continue to improvise cuisines around “Bangali Ranna” focusing on the tradition of Bengal to create innovative dishes and establish Greenstop as a microcosm of Indian flavours. 
+                            </p>
+                            <p class="text-white h4" style="font-weight:bold;">
+                                We only accept orders in advance for any future date.
+                            </p>
+                            <p class="text-white h6">
+                                <span class="h4" style="font-weight:bold;">If you want to order for tomorrow</span>,  please place your order by 7 p.m. today. We would buy fresh from the market and serve you our best homemade food of your choice. 
+                            </p>
+                            <p class="text-white h4" style="font-weight:bold;">
+                                We generally deliver contactless at your doorstep every day from 11.30 a.m. to 9.30 p.m. But during the lockdown period, we operate from 1.00 p.m. to 8.00 p.m.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- <div class="container">
+        <div class="row my-4">
+            <div class="col-sm-12">
+                <p class="h3" style="font-weight: bold;font-size: 1.5rem;">Bit About Us</p>
+                <p class="text-secondary">
+                    Our mission is to serve our customers healthy and tasty foods to keep them ordering us and build a long term collaborative relationship. We would continue to improvise cuisines around “Bangali Ranna” focusing the tradition of Bengal to create innovative dishes and establish Greenstop as a microcosm of Indian flavours. 
+                </p>
+                <span class="d-block"><strong>We only accept orders in advance for any future date.</strong></span>
+                <p class="text-secondary">
+                    <span style="color:forestgreen"><strong>If you want to order for tomorrow</strong></span>, please place your order by 7 p.m. today, that would allow us to buy fresh from the market and serve you our best homemade food of your choice. 
+                </p>
+                <p>
+                    <span><strong>We deliver contactless at your doorstep every day from 11.30 a.m. to 9.30 p.m.</strong></span>
+                </p>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div id="header" #header>
+        <div class="card"  [ngClass]="{'sticky':isSticky===true}">
+            <div class="card-body" style="padding:0rem;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 mt-3">
+                            <div class="wrapper">
+                                <div class="item h6" *ngFor='let item of catagoryDetails;index as itmx' (click)='scroll(item.id+"_")'>{{item.name}}</div>
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="col-sm-4 go-if-mobile-sticky">
+                            <form #searchForm="ngForm">
+                                <div class="input-group border ">
+                                    <div class="input-group-prepend border-0">
+                                        <button id="button-addon4" type="button" class="btn btn-link text-info"><i class="fa fa-search"></i></button>
+                                        
+                                    </div>
+                                    <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon4" class="form-control bg-none border-0" ngModel required name="searchTerm" autocomplete="off" #search>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>                
+            </div>
+        </div>      
+    </div> -->
+    <div class="menu_start" style="height: 20px;background-color: #a1a4a71a;"></div>
+    <div class="pb-5" style="background-color: #a1a4a71a;">
+        <div class="container" *ngIf="searchcatagoryDetails">
+            <div class="row pt-5" *ngFor='let items of searchcatagoryDetails;' [ngClass]="[items.name.length>0?items.id+'_':'']">
+                <!-- <div class="col-sm-12">
+                    hello new class
+                </div> -->
+                <div class="col-sm-6 my-3 pt-3">
+                    <!-- <p class="h6"><img class="item_image" src={{items.image}} alt=""> <b>{{items.name}}</b></p> -->
+                    <span class="item-name">{{items.name}}</span>
+                </div>
+                <div class="col-sm-6 my-3">
+                    <img src={{items.image}} class="w-100" alt={{items.name}}>
+                </div>
+                
+                <div class="col-lg-6 mt-sm-0 mt-md-3 px-md-2 px-sm-0 card-container" *ngFor='let subitem of items.subcatagoryList'>
+                   
+                    <mat-card class="example-card h-100" style="padding: 0px;">
+                    <div class="card h-100 border-light mb-3">
+                        <!-- <div class="card-header bg-white">
+                            {{subitem.name}}
+                        </div> -->
+                        <div class="card-body pt-3 px-3 pb-0">
+                            <p class="h6"><b>{{subitem.name}}</b> <i class="pl-2">{{subitem.detail}}</i> </p>
+                            <p class="h6 text-secondary">{{subitem.name2}}</p>
+                            <p class="text-muted" style="font-size: small;">Catagory: {{(subitem.type===1?'Main':(subitem.type===2?'Snacky':(subitem.type===3?'Accompaniment':'Main')))}}</p>
+                            <p class="card-text">{{subitem.description}}</p>       
+                            <span class="card-text d-block"><b>&#8377; {{subitem.price}}</b>  </span>         
+                        </div>
+                        <div class="card-footer bg-white border-light">
+                            <div class="row">
+                                <div class="col-7" style="position: relative;">
+                                    <div class="input-group">
+                                        <input type="button" value="-" class="button-minus border-right-0 border-light" data-field="quantity" [disabled]="subitem.quantity==0" (click)="subitem.quantity=subitem.quantity-1">
+                                        <!-- <input type="number" step="1" max="" value="1" name="quantity" class="quantity-field"> -->
+                                        <label for="" class="quantity-field pt-2 border-top border-bottom border-light">{{subitem.quantity}}</label>
+                                        <input type="button" value="+" class="button-plus border-left-0 border-light" data-field="quantity" [disabled]="subitem.quantity==15" (click)="subitem.quantity=subitem.quantity+1">
+                                      </div>
+                                     
+                                      <img class="spl-note" src="assets/img/icons/fried_2.png" alt=""
+                                       (click)="openDialog(subitem)"
+                                       matTooltip="Choose your options"
+                                        [matTooltipPosition]="tooltipposition.value"
+                                        matTooltipClass="example-tooltip-red">
+                                      
+                                </div> 
+                                <div class="col-5">
+                                    <button type="button" mat-raised-button [disabled]="subitem.quantity==0" class=" w-100 mt-3" (click)="addToCart(subitem)">
+                                        <span class="pr-1">
+                                            Add to Cart 
+                                        </span>
+                                        <!-- 739cc7 -->
+                                        <!-- <span class="text-info" style="font-size: 0.90rem;float:right;margin-top: 1px;">
+                                            <b>&#8377;{{subitem.price}}</b> 
+                                        </span> -->
+                                    </button>
+                                   
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </mat-card>
+                </div>
+                
+            </div>
+        </div>
+        <div class="container" *ngIf="loadingData">
+            <div class="row pt-5">
+                <div class="col-4">
+                    <!-- <  img src="assets/img/icons/restaurant_color.png" class="w-100" style="max-width: 100px;" alt=""> -->
+                    
+                      <div class="d-flex justify-content-center">
+                        <div class="spinner-border text-success" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                      </div>
+                </div>
+                <div class="col-8">
+                    <div class="p-2" ></div>
+                    <mat-card-title>Loading the menu...</mat-card-title>        
+                </div>
+                <div class="col-sm-6">
+                    <img src="assets/gifs/paragraph_loader_gif.gif"  class="w-100" alt="loading menu">
+                </div>
+                <div class="col-sm-6">
+                    <img src="assets/gifs/paragraph_loader_gif.gif"  class="w-100" alt="loading menu">
+                </div>
+            </div>
+        </div>
+        <div class="container" *ngIf="loadingData==false && searchcatagoryDetails">
+            <div class="row pt-5" *ngIf="searchcatagoryDetails.length==0">
+                
+
+                    <div class="col-4">
+                        <img src="assets/img/icons/restaurant_color.png" class="w-100" style="max-width: 100px;" alt="">
+                    </div>
+                    <div class="col-8">
+                        <div class="p-2" ></div>
+                        <mat-card-title>No item found <span *ngIf="searchTermTemp.length>0" style="color:chocolate;">for {{searchTermTemp}}</span>.</mat-card-title>        
+                    </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="scrollToTopBtn" *ngIf="isSticky">
+        <button mat-mini-fab  aria-label="Scoll to top" (click)="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+      </div>
+</div>
+
+

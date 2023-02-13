@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Assign {{(data==3)?'Kitchen':'Delivery Agent'}}</h2>
+  <!-- <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon" (click)="onNoClick()"> -->
+    <!-- <mat-icon>filter_list</mat-icon> -->
+    <!-- <i class="fas fa-long-arrow-alt-left"></i>
+  </button> -->
+  <mat-dialog-content class="mat-typography">
+    <mat-form-field class="w-100" cdkFocusInitial>
+      <mat-label>Choose {{(data==3)?'Kitchen':'Delivery Agent'}}</mat-label>
+      <mat-select [(ngModel)]="role_id" name="timeslot" required>
+        <mat-option *ngFor="let item of role_employee_details" [value]="item.value">
+          {{item.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button (click)="onNoClick()" style="margin-top: 20px;
+    margin-bottom: 30px;
+    color: green;" >Ok</button>
+  </mat-dialog-actions>
+
+  
+

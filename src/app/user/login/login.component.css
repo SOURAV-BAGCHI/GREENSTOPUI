@@ -1,0 +1,79 @@
+.example-card {
+    max-width: 337px;
+    margin-top:16px;
+    /* margin-left: 10vw; */
+  }
+  
+  @media screen and (max-width: 800px)
+  {
+    .example-card{
+        margin-left: 4vw;
+    }
+  }
+
+  .example-header-image {
+    background-image: url('/assets/img/icons/user.png');
+    background-size: cover;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+   
+  .example-full-width {
+    width: 100%;
+  }
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+  }
+
+
+.mat-form-field{ 
+    width:100%;
+}
+
+.g-recaptcha {
+    transform:scale(0.77);
+    -webkit-transform:scal(0.77); 
+    /* transform-origin:0 0; */
+    /* -webkit-transform-origin:0 0; */
+} 
+
+@media screen and (max-width: 575px){ 
+    .g-recaptcha {
+    transform:scale(0.77);
+    -webkit-transform:scale(0.77);
+    /* transform-origin:0 0; */
+    /* -webkit-transform-origin:0 0; */
+    } 
+}
+
+.body-background{
+  /* background-image: url('/assets/img/icons/undraw_cooking_lyxy.svg'); */
+  background-image: url('/assets/img/login_bg.jpg');
+  /* background-repeat: no-repeat;*/
+  background-attachment: fixed; 
+  background-size: cover;
+  /* background-position: right bottom;  */
+  /* min-height:100vh;*/
+  /* background-size: 70% 70%; */
+  /* background-size: 40% 70%;
+  background-blend-mode: color-dodge; */
+  padding-bottom: 40px;
+  padding-top: 40px;
+  min-height: 70vh;
+}
+
+.mat-card{
+  background: #ffffffd1;
+}
+
+.logo{
+  position: relative;
+  top: 10px;
+  color: chartreuse;
+}

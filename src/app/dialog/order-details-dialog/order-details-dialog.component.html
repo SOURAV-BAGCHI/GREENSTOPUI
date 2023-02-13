@@ -1,0 +1,86 @@
+<h2 mat-dialog-title style="color:#6c757d">Order Details</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="d-block text-dark">Client</h3>
+        <span class="d-block">{{data.CustomerInfo.Name}}</span>
+        <span class="d-block">{{data.CustomerInfo.AddressLine1}}</span>
+        <span class="d-block">{{data.CustomerInfo.AddressLine2}}</span>
+        <span class="d-block">{{data.CustomerInfo.Landmark}}</span>
+        <span class="d-block">Kolkata: {{data.CustomerInfo.Pincode}}</span>
+        <span class="d-block">Whatsapp: {{data.CustomerInfo.Phone}}</span>
+        <span class="d-block">Tel: {{data.CustomerInfo.AlternatePhone}}</span>
+      </div>
+      <div class="col-12">
+        <h3 class="d-block mt-3  text-dark">Order</h3>
+        <span>Id: </span><span class="text-success">{{data.OrderId}}</span>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-6">Date and time of order:</div>
+          <div class="col-6 text-secondary">{{data.CreateDate |date:'medium'}}</div>
+          <div class="col-6">Date and time of delivery:</div>
+          <div class="col-6">
+            <span class="d-block text-secondary">{{data.DeliveryDate|date}}</span> 
+            <span class="text-secondary">{{data.DeliveryTime}}</span> 
+          </div>
+          <div class="col-6">
+            Delivery address:
+          </div>
+          <div class="col-6">
+            <span class="d-block text-secondary">{{data.CustomerInfo.Name}}</span>
+            <span class="d-block text-secondary">{{data.CustomerInfo.AddressLine1}}</span>
+            <span class="d-block text-secondary">{{data.CustomerInfo.AddressLine2}}</span>
+            <span class="d-block text-secondary">{{data.CustomerInfo.Landmark}}</span>
+            <span class="d-block text-secondary">Kolkata: {{data.CustomerInfo.Pincode}}</span>
+            <span class="d-block text-secondary">Whatsapp: {{data.CustomerInfo.Phone}}</span>
+            <span class="d-block text-secondary">Tel: {{data.CustomerInfo.AlternatePhone}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <h3 class="text-secondary col-12 text-dark">Bill</h3>
+          <div class="col-6">Item</div>
+          <div class="col-3">Itm</div>
+          <div class="col-3">Price (Rs.)</div>
+          <div class="col-12" *ngFor="let item of data.ItemDetails">
+            <div class="row">
+              <div class="col-6">{{item.name}}</div>
+              <div class="col-3">{{item.quantity}}</div>
+              <div class="col-3">{{item.price}}</div>                  
+            </div>
+            
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-9">Item Total:</div>
+          <div class="col-3">{{itemTotal}}</div>
+          <div class="col-9">CGST:</div>
+          <div class="col-3">0</div>
+          <div class="col-9">SGST:</div>
+          <div class="col-3">0</div>
+          <div class="col-9">Packaging Charge:</div>
+          <div class="col-3">0</div>
+          <div class="col-9">Delivery Charge:</div>
+          <div class="col-3">{{data.DeliveryCharges}}</div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-9"><span class="text-success"><b>Total Bill Value</b></span></div>
+          <div class="col-3">{{itemTotal+data.DeliveryCharges}}</div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <P>Payment mode selected :{{(data.PaymentInfo.Mode==1?'Cash':'UPI')}}</P>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+  </mat-dialog-actions>

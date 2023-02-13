@@ -1,0 +1,37 @@
+.footer-background{
+    border:0px solid;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.footer-text{
+    line-height: 13px;
+    font-size: 13px;
+    /* font-weight: 200; */
+    /* color: #2b2b2b; */
+    font-family: "JIM Sans Light", Arial;
+
+    /********* new addition **************/
+    font-weight: 600;
+    color:black;
+    /*************************************/
+}
+
+.footer-text2{
+    font-size: 11px;
+    text-decoration: none;
+    color: #82888C im !important;
+    font-weight: 200;
+    font-family: "JIM Sans Regular", Arial;
+}
+
+.padding-top-footer{
+    padding-top: 10px;
+}
+
+@media (min-width: 700px)
+{
+    .padding-top-footer{
+        padding-top: 0px;
+    }
+}

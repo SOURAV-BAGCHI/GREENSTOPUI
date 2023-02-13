@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>Order Id: {{data.orderid}}</h2>
+<h3 mat-dialog-title>Amount : Rs.{{data.amount}}</h3>
+<mat-dialog-content class="mat-typography">
+
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="otpFormGroup">
+      <form [formGroup]="otpFormGroup">
+        <ng-template matStepLabel>Enter verification code</ng-template>
+        <mat-form-field *ngIf="!otp_verified">
+          <mat-label>Code</mat-label>
+          <input matInput placeholder="Enter 4 digit code" formControlName="otpCtrl" maxlength="4" required>
+        </mat-form-field>
+        <button mat-button (click)="checkotp()" [disabled]=otpFormGroup.invalid *ngIf="!otp_verified">
+            
+            {{isloadingData?'Verifying ': 'Verify code'}}
+            <span *ngIf="isloadingData" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
+        <p *ngIf="otp_verified" class="text-success">
+          OTP Verified
+        </p>
+        <div>
+          <button mat-button matStepperNext [disabled]="!otp_verified" class="next-text">Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="paymentInfoFormGroup">
+      <form [formGroup]="paymentInfoFormGroup">
+        <ng-template matStepLabel>Fill out payment details</ng-template>
+                   <!-- <mat-form-field> -->
+            <mat-checkbox formControlName="paymentPresentCtrl">Payment Received</mat-checkbox>
+          <!-- </mat-form-field> -->
+          <mat-form-field>
+            <mat-label>Payment Mode</mat-label>
+            <mat-select formControlName="paymentModelCtrl" name="payment_mode"
+             required>
+              <mat-option *ngFor="let mode of payment_mode" [value]="mode.value">
+                {{mode.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Amount</mat-label>
+            <input matInput formControlName="amountCtrl" placeholder="" 
+            required   >
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Transaction Id</mat-label>
+            <input matInput formControlName="transactionIdCtrl" placeholder="" >
+          </mat-form-field> 
+          <div>
+            <button class="placeOdrCls" mat-raised-button [disabled]="paymentInfoFormGroup.controls.paymentPresentCtrl.value==true && paymentInfoFormGroup.invalid" (click)="submitPaymentInfo()" >
+                
+                {{isloadingData?'Submitting': 'Submit payment info'}}
+                                  <span *ngIf="isloadingData" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              
+              </button>
+          </div>
+      </form>
+    </mat-step>
+    <!-- <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step> -->
+  </mat-vertical-stepper>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+  </mat-dialog-actions>
